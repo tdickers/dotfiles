@@ -1,0 +1,31 @@
+## Avoid nano line wrapping
+alias nano="nano -w"
+
+## Expire SSH keys in memory after 12 hours
+alias ssh-add="ssh-add -t 43200"
+
+##  Less highlighting
+# Enable syntax-highlighting in less.
+# brew install source-highlight
+export LESSOPEN="| $(brew list source-highlight | grep src-hilite-lesspipe.sh) %s"
+export LESS=" -R "
+alias less='less -i -J --underline-special --SILENT'
+alias more='less'
+
+# SFW alias for thefuck
+alias frak='fuck'
+
+## Find shortcut
+function f() {
+  find . -iname "*$1*" -print | grep --color -i $1
+}
+## History grep
+function hgrep() {
+  history | grep "$1" | grep -v hgrep
+}
+
+## Directory shortcuts
+alias ew="cd $HOME/git/ew/"
+
+## Autojump (j)
+[[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
