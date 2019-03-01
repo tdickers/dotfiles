@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/tdickers/.oh-my-zsh
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -49,13 +49,19 @@ HIST_STAMPS="yyyy-mm-dd"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(brew brew-cask git nyan osx screen vagrant docker zsh-autosuggestions zsh-syntax-highlighting)
+base_plugins=(brew brew-cask git screen vagrant docker zsh-autosuggestions zsh-syntax-highlighting)
+os_plugins=()
+if [[ "$(uname)" == "Darwin" ]]; then
+    os_plugins=(brew brew-cask osx)
+fi
+plugins=("${base_plugins[@]}" "${os_plugins[@]}")
+# TODO conditionally load all plugins (i.e. if docker installed)
 
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
-source $ZSH/oh-my-zsh.sh
+source "$ZSH/oh-my-zsh.sh"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8

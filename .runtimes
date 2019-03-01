@@ -4,21 +4,29 @@ export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 
 ## Java
-export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
+if [ -f /usr/libexec/java_home ]; then
+    export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
+fi
 
 ## NodeJs
-source /usr/local/opt/nvm/nvm.sh
+if [ -f /usr/local/opt/nvm/nvm.sh ]; then
+    source /usr/local/opt/nvm/nvm.sh
+fi
 
 ## Perl
-source ~/perl5/perlbrew/etc/bashrc\
+if [ -f "$HOME/perl5/perlbrew/etc/bashrc" ]; then
+    source "$HOME/perl5/perlbrew/etc/bashrc"
+fi
 
 ## Python
 # added by pipsi (https://github.com/mitsuhiko/pipsi)
-export PATH="/Users/tdickers/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 
 ## Ruby
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 
 ## Rust
-source $HOME/.cargo/env
+if [ -f "$HOME/.cargo/env" ]; then
+    source $HOME/.cargo/env
+fi

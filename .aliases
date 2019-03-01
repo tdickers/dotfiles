@@ -7,10 +7,12 @@ alias ssh-add="ssh-add -t 43200"
 ##  Less highlighting
 # Enable syntax-highlighting in less.
 # brew install source-highlight
-export LESSOPEN="| $(brew list source-highlight | grep src-hilite-lesspipe.sh) %s"
-export LESS=" -R "
-alias less='less -i -J --underline-special --SILENT'
-alias more='less'
+if command -v brew; then
+    export LESSOPEN="| $(brew list source-highlight | grep src-hilite-lesspipe.sh) %s"
+    export LESS=" -R "
+    alias less='less -i -J --underline-special --SILENT'
+    alias more='less'
+fi
 
 # SFW alias for thefuck
 alias frak='fuck'
@@ -28,4 +30,6 @@ function hgrep() {
 alias ew="cd $HOME/git/ew/"
 
 ## Autojump (j)
-[[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
+if command -v brew; then
+    [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
+fi
