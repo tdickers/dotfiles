@@ -1,3 +1,6 @@
+# Profiling
+#zmodload zsh/zprof
+
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -95,3 +98,6 @@ DOTFILES_ROOT="$HOME/.dotfiles"
 . "$DOTFILES_ROOT/.local_settings"
 . "$DOTFILES_ROOT/.aliases"
 . "$DOTFILES_ROOT/.runtimes"
+
+# Profiling
+#zprof
