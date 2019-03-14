@@ -41,3 +41,12 @@ alias ew="cd $HOME/git/ew/"
 if command -v brew > /dev/null; then
     [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
 fi
+
+## Git 
+function git-fetch() {
+  git fetch origin $(git branch | grep \* | cut -d ' ' -f2)
+}
+function git-rebase-origin() {
+  git-fetch
+  git rebase FETCH_HEAD
+}
