@@ -44,9 +44,19 @@ fi
 
 ## Git 
 function git-fetch() {
-  git fetch origin $(git branch | grep \* | cut -d ' ' -f2)
+    if [ "$#" -ne 1 ]; then
+        echo "Specify a branch."
+        exit 1
+    fi
+    git fetch origin "$1"
 }
+
 function git-rebase-origin() {
-  git-fetch
-  git rebase FETCH_HEAD
+    if [ "$#" -ne 1 ]; then
+        echo "Specify a branch."
+        exit 1
+    fi
+
+    git-fetch "$1"
+    git rebase FETCH_HEAD
 }
