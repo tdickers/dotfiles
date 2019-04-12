@@ -98,6 +98,7 @@ DOTFILES_ROOT="$HOME/.dotfiles"
 . "$DOTFILES_ROOT/.local_settings"
 . "$DOTFILES_ROOT/.aliases"
 . "$DOTFILES_ROOT/.runtimes"
+. "$DOTFILES_ROOT/.local_overrides"
 
 # Profiling
 #zprof
