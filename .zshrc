@@ -52,10 +52,10 @@ HIST_STAMPS="yyyy-mm-dd"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-base_plugins=(brew brew-cask git screen vagrant docker zsh-autosuggestions zsh-syntax-highlighting)
+base_plugins=(git screen vagrant docker)
 os_plugins=()
 if [[ "$(uname)" == "Darwin" ]]; then
-    os_plugins=(brew brew-cask osx)
+    os_plugins=(brew osx)
 fi
 plugins=("${base_plugins[@]}" "${os_plugins[@]}")
 # TODO conditionally load all plugins (i.e. if docker installed)
@@ -95,10 +95,10 @@ DOTFILES_ROOT="$HOME/.dotfiles"
 
 . "$DOTFILES_ROOT/.env"
 . "$DOTFILES_ROOT/.paths"
-. "$DOTFILES_ROOT/.local_settings"
+if [ -f "$DOTFILES_ROOT/.local_settings" ]; then . "$DOTFILES_ROOT/.local_settings"; fi
 . "$DOTFILES_ROOT/.aliases"
 . "$DOTFILES_ROOT/.runtimes"
-. "$DOTFILES_ROOT/.local_overrides"
+if [ -f "$DOTFILES_ROOT/.local_overrides" ]; then . "$DOTFILES_ROOT/.local_overrides"; fi
 
 # Profiling
 #zprof
