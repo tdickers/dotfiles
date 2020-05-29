@@ -1,12 +1,6 @@
 ## Go
-export PATH=$PATH:/usr/local/opt/go/libexec/bin
-export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin
-
-## Java
-if [ -f /usr/libexec/java_home ]; then
-    export JAVA_HOME=$(/usr/libexec/java_home)
-fi
+export GOPATH=$HOME
+export PATH="$PATH:$GOPATH/bin"
 
 ## NodeJs
 if [ -f /usr/local/opt/nvm/nvm.sh ]; then
@@ -23,10 +17,22 @@ fi
 export PATH="$HOME/.local/bin:$PATH"
 
 ## Ruby
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
+if [ -f "$HOME/.rbenv" ]; then
+    export PATH="$HOME/.rbenv/bin:$PATH"
+    eval "$(rbenv init -)"
+fi
+
+if [ -d "/usr/local/share/chruby" ]; then
+    export PATH="/usr/local/share/chruby:$PATH"
+fi
 
 ## Rust
 if [ -f "$HOME/.cargo/env" ]; then
     source $HOME/.cargo/env
 fi
+
+## Java
+export PATH="/usr/local/opt/openjdk/bin:$PATH"
+
+## K8s
+export KUBECONFIG=${KUBECONFIG:+$KUBECONFIG:}$HOME/.kube/config

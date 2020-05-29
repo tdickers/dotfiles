@@ -19,7 +19,7 @@ fi
 ## thefuck configuration
 if command -v thefuck > /dev/null; then
     # short alias
-    eval $(thefuck --alias)
+    #eval $(thefuck --alias)
 
     # SFW alias
     alias frak='thefuck'
@@ -46,7 +46,7 @@ fi
 function git-fetch() {
     if [ "$#" -ne 1 ]; then
         echo "Specify a branch."
-        exit 1
+        return 1
     fi
     git fetch origin "$1"
 }
@@ -54,9 +54,17 @@ function git-fetch() {
 function git-rebase-origin() {
     if [ "$#" -ne 1 ]; then
         echo "Specify a branch."
-        exit 1
+        return 1
     fi
 
     git-fetch "$1"
     git rebase FETCH_HEAD
 }
+
+klogs () {
+    kubectl get pods -o name | ggrep -oP "(?<=/).+$" | fzf | head -1 | xargs kubectl logs
+}
+
+alias gro="git-rebase-origin"
+alias gf="git-fetch"
+alias gpo="git push origin"
